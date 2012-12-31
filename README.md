@@ -73,6 +73,7 @@ The apocalyptic future
 
 The TODO list is almost endless at this point:
 
+- DOCS!!!
 - Syncing (to mark snaps as seen)
 - Video fetching
 - Image/video posting
