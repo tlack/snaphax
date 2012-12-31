@@ -19,7 +19,6 @@
 		$opts = array();
 		$opts['username'] = $argv[1];
 		$opts['password'] = $argv[2];
-		$opts['debug'] = 1; // CHANGE THIS; major spewage
 
 		$s = new Snaphax($opts);
 		$result = $s->login();
@@ -27,7 +26,7 @@
 		foreach ($result['snaps'] as $snap) {
 			var_dump($snap['st']);
 			if ($snap['st'] == SnapHax::STATUS_NEW) {
-				echo "fetching $snap[id]";
+				echo "fetching $snap[id]\n";
 				$blob_data = $s->fetch($snap['id']);
 				if ($blob_data)
 					file_put_contents($snap['id'].'.jpg', $blob_data);

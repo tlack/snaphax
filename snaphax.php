@@ -30,7 +30,8 @@
 		'pattern' => '0001110111101110001111010101111011010001001110011000110001000110',
 		'secret' => 'iEk21fuwZApXlz93750dmW22pw389dPwOk',
 		'static_token' => 'm198sOkJEn37DjqZ32lpRu76xmw288xSQ9',
-		'url' => 'https://feelinsonice.appspot.com'
+		'url' => 'https://feelinsonice.appspot.com',
+		'user_agent' => 'Snaphax 4.0.1 (iPad; iPhone OS 6.0; en_US)'
 	);
 
 	if (!function_exists('curl_init')) {
@@ -53,8 +54,6 @@
 		public function blob($snap_id, $username, $auth_token) {
 			$un = urlencode($username);
 			$ts = time();
-			// $token = $this->hash($ts, $auth_token);
-			// $url = "https://feelinsonice.appspot.com/ph/blob?id=$snap_id&username=$un&timestamp=$ts&req_token=$token";
 			$url = "/ph/blob";
 			$result = $this->postToEndpoint($url, array(
 				'id' => $snap_id,
@@ -71,40 +70,18 @@
 				return false;
 		}
 
-		public function httpGet($url) {
-			$ch = curl_init();
-
-			curl_setopt($ch,CURLOPT_URL, $this->options['url'].$url);
-			curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch,CURLOPT_USERAGENT,'Snaphax 4.0.1 (iPad; iPhone OS 6.0; en_US)');
-
-			$this->debug($url);
-
-			// execute post
-			$result = curl_exec($ch);
-			$this->debug($result);
-
-			// close connection
-			curl_close($ch);
-
-			return json_decode($result, true);
-		}
-
 		public function postToEndpoint($endpoint, $post_data, $param1, $param2, $json=1) {
 			$ch = curl_init();
 
 			// set the url, number of POST vars, POST data
 			curl_setopt($ch,CURLOPT_URL, $this->options['url'].$endpoint);
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch,CURLOPT_USERAGENT,'Snaphax 4.0.1 (iPad; iPhone OS 6.0; en_US)');
+			curl_setopt($ch,CURLOPT_USERAGENT, $this->options['user_agent']);
 
 			$post_data['req_token'] = $this->hash($param1, $param2);
 			curl_setopt($ch,CURLOPT_POST, count($post_data));
 			curl_setopt($ch,CURLOPT_POSTFIELDS, http_build_query($post_data));
-
-			$this->debug(json_encode($post_data));
-
-			// execute post
+			$this->debug('POST params: ' . json_encode($post_data));
 			$result = curl_exec($ch);
 			$this->debug($result);
 
@@ -159,10 +136,6 @@
 			$this->api = new SnaphaxApi($this->options);
 			$this->auth_token = false;
 		}
-		private function error($text) {
-			error_report($text);
-			return false;
-		}
 		function login() {
 			$ts = time();
 			$out = $this->api->postToEndpoint(
@@ -183,7 +156,7 @@
 		}
 		function fetch($id) {
 			if (!$this->auth_token) {
-				return $this->error('no auth token');
+				throw new Exception('no auth token');
 			}
 			$blob = $this->api->blob($id, 
 				$this->options['username'], 
