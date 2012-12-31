@@ -45,10 +45,11 @@
 	}
 
 	class Snaphax {
-
 		// High level class to perform actions on Snapchat
 
 		const STATUS_NEW = 1;
+		const MEDIA_IMAGE = 0;
+		const MEDIA_VIDEO = 1;
 
 		function Snaphax($options) {
 			global $SNAPHAX_DEFAULT_OPTIONS;
@@ -98,6 +99,16 @@
 				echo "SNAPHAX DEBUG: $text\n";
 		}
 
+		private function isValidBlobHeader($header) {
+			if (($header[0] == chr(00) && // mp4
+					 $header[0] == chr(00)) || 
+					($header[0] == chr(0xFF) && // jpg
+					 $header[1] == chr(0xD8)))
+				return true;
+			else
+				return false;
+		}
+
 		public function fetchBlob($snap_id, $username, $auth_token) {
 			$un = urlencode($username);
 			$ts = time();
@@ -110,11 +121,12 @@
 			$this->debug('blob result: ' . $result);
 			$result_decoded = mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $result, 'ecb');
 			$this->debug('decoded: ' . $result_decoded);
-			if ($result_decoded[0] == chr(0xFF) &&
-					$result_decoded[1] == chr(0xD8)) {		
+			if ($this->isValidBlobHeader(substr($result_decoded, 0, 256))) {
 				return $result_decoded;
-			} else
+			} else {
+				$this->debug('invalid image/video data header');
 				return false;
+			}
 		}
 
 		public function postCall($endpoint, $post_data, $param1, $param2, $json=1) {

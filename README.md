@@ -32,8 +32,9 @@ Pretty simple:
 Limitations
 -----------
 
-Only login (with list of new media) and fetching of images is implemented.
-This is obviously a huge failing which I am to correct when I have more time.
+Only login (with list of new media) and fetching of image/video snaps is
+implemented.  This is obviously a huge failing which I am to correct when I
+have more time.
 
 Motivation and development process
 ----------------------------------
@@ -85,8 +86,7 @@ The TODO list is almost endless at this point:
 
 - DOCS!!!
 - Syncing (to mark snaps as seen)
-- Video fetching
-- Image/video posting
+- Image/video uploading
 - Friend list maintenance
 - Port to Javascript (probably via Node + NPM since their API doesn't seem to
 	support JSONP)

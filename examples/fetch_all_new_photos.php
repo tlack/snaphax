@@ -19,6 +19,7 @@
 		$opts = array();
 		$opts['username'] = $argv[1];
 		$opts['password'] = $argv[2];
+		// $opts['debug'] = 1; uncomment if having trouble
 
 		$s = new Snaphax($opts);
 		$result = $s->login();
@@ -28,8 +29,13 @@
 			if ($snap['st'] == SnapHax::STATUS_NEW) {
 				echo "fetching $snap[id]\n";
 				$blob_data = $s->fetch($snap['id']);
-				if ($blob_data)
-					file_put_contents($snap['id'].'.jpg', $blob_data);
+				if ($blob_data) {
+					if ($snap['m'] == SnapHax::MEDIA_IMAGE)
+						$ext = '.jpg';
+					else
+						$ext = '.mp4';
+					file_put_contents($snap['id'].$ext, $blob_data);
+				}
 			}
 		}
 	}
