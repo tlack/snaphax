@@ -40,6 +40,9 @@
 	if (!function_exists('json_decode')) {
 		  throw new Exception('Snaphax needs the JSON PHP extension.');
 	}
+	if (!function_exists('mcrypt_decrypt')) {
+		  throw new Exception('Snaphax needs the mcrypt PHP extension.');
+	}
 
 	class Snaphax {
 
