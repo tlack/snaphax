@@ -93,6 +93,11 @@ The TODO list is almost endless at this point:
 - Add support for PHP composer
 - Test framework
 
+License
+-------
+
+MIT
+
 Credits
 -------
 
