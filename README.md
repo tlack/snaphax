@@ -83,10 +83,10 @@ The TODO list is almost endless at this point:
 - Add support for PHP composer
 - Test framework
 
-Author
-------
+Credits
+-------
 
 Made by [@tlack](http://twitter.com/tlack) with a lot of help from 
-[@adamcaudill](http://twitter.com/adamcaudill)
-
+[@adamcaudill](http://twitter.com/adamcaudill), and of course all of this is
+due to the inventiveness of the [Snapchat](http://snapchat.com) team
 
