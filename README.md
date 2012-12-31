@@ -17,8 +17,8 @@ Limitations
 Only login (with list of new media) and fetching of images is implemented.
 This is obviously a huge failing which I am to correct when I have more time.
 
-Motivation
-----------
+Motivation and development process
+----------------------------------
 
 I'm a huge fan of Snapchat. I'm stunned and delighted by the fact that a simple
 feature like auto-expiration of images can create such a compelling and
@@ -34,6 +34,9 @@ I ended up having to fetch the official Android client's app binary (APK),
 decompiling the whole thing with a mix of tools (all of them seemed to produce
 subtly incorrect output), and then puzzling through the process of creating
 their dreaded access tokens (called req\_token in the HTTP calls).
+
+This involved me paging through Fiddler, trying to generate SHA-256 hashes
+seemingly at random, tearing my hear out, and weeping openly.
 
 Their system is a bit unusual: it AES-256 hashes the two input values
 separately, using a secret key contained in the binary, and then uses a fixed
@@ -77,10 +80,12 @@ The TODO list is almost endless at this point:
 - Port to Javascript (probably via Node + NPM since their API doesn't seem to
 	support JSONP)
 - Add support for PHP composer
+- Test framework
 
 Author
 ------
 
 Made by [@tlack](http://twitter.com/tlack) with a lot of help from 
 [@adamcaudill](http://twitter.com/adamcaudill)
+
 
