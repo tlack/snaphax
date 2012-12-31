@@ -41,7 +41,51 @@
 		  throw new Exception('Snaphax needs the JSON PHP extension.');
 	}
 
+	class Snaphax {
+
+		// High level class to perform actions on Snapchat
+
+		const STATUS_NEW = 1;
+
+		function Snaphax($options) {
+			global $SNAPHAX_DEFAULT_OPTIONS;
+
+			$this->options = array_merge($SNAPHAX_DEFAULT_OPTIONS, $options);
+			$this->api = new SnaphaxApi($this->options);
+			$this->auth_token = false;
+		}
+		function login() {
+			$ts = time();
+			$out = $this->api->postCall(
+				'/ph/login',
+				array(
+					'username' => $this->options['username'],
+					'password' => $this->options['password'],
+					'timestamp' => $ts
+				),
+				$this->options['static_token'], 
+				$ts
+			);
+			if (is_array($out) &&
+					!empty($out['auth_token'])) {
+				$this->auth_token = $out['auth_token'];
+			}
+			return $out;
+		}
+		function fetch($id) {
+			if (!$this->auth_token) {
+				throw new Exception('no auth token');
+			}
+			$blob = $this->api->fetchBlob($id, 
+				$this->options['username'], 
+				$this->auth_token);
+			return $blob;
+		}
+	}
+
 	class SnaphaxApi {
+		// Low level code to communicate with Snapchat via HTTP
+		
 		function SnaphaxApi($options) {
 			$this->options = $options;
 		}
@@ -51,11 +95,11 @@
 				echo "SNAPHAX DEBUG: $text\n";
 		}
 
-		public function blob($snap_id, $username, $auth_token) {
+		public function fetchBlob($snap_id, $username, $auth_token) {
 			$un = urlencode($username);
 			$ts = time();
 			$url = "/ph/blob";
-			$result = $this->postToEndpoint($url, array(
+			$result = $this->postCall($url, array(
 				'id' => $snap_id,
 				'timestamp' => $ts, 
 				'username' => $username,
@@ -70,7 +114,7 @@
 				return false;
 		}
 
-		public function postToEndpoint($endpoint, $post_data, $param1, $param2, $json=1) {
+		public function postCall($endpoint, $post_data, $param1, $param2, $json=1) {
 			$ch = curl_init();
 
 			// set the url, number of POST vars, POST data
@@ -126,42 +170,4 @@
 		}
 	}
 
-	class Snaphax {
-		const STATUS_NEW = 1;
-
-		function Snaphax($options) {
-			global $SNAPHAX_DEFAULT_OPTIONS;
-
-			$this->options = array_merge($SNAPHAX_DEFAULT_OPTIONS, $options);
-			$this->api = new SnaphaxApi($this->options);
-			$this->auth_token = false;
-		}
-		function login() {
-			$ts = time();
-			$out = $this->api->postToEndpoint(
-				'/ph/login',
-				array(
-					'username' => $this->options['username'],
-					'password' => $this->options['password'],
-					'timestamp' => $ts
-				),
-				$this->options['static_token'], 
-				$ts
-			);
-			if (is_array($out) &&
-					!empty($out['auth_token'])) {
-				$this->auth_token = $out['auth_token'];
-			}
-			return $out;
-		}
-		function fetch($id) {
-			if (!$this->auth_token) {
-				throw new Exception('no auth token');
-			}
-			$blob = $this->api->blob($id, 
-				$this->options['username'], 
-				$this->auth_token);
-			return $blob;
-		}
-	}
 
