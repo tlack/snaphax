@@ -62,7 +62,7 @@ through the process of creating their dreaded access tokens (called req\_token
 in the HTTP calls).
 
 This involved me paging through Fiddler, trying to generate SHA-256 hashes
-seemingly at random, tearing my hear out, and weeping openly.
+seemingly at random, tearing my heart out, and weeping openly.
 
 Their system is a bit unusual: it AES-256 hashes two input values separately,
 using a secret key contained in the binary, and then uses a fixed pattern
