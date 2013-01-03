@@ -24,6 +24,11 @@
 		$s = new Snaphax($opts);
 		$result = $s->login();
 		var_dump($result);
+		if (empty($result) || empty($result['snaps'])) {
+			echo "no snaps";
+			exit;
+		}
+
 		foreach ($result['snaps'] as $snap) {
 			var_dump($snap['st']);
 			if ($snap['st'] == SnapHax::STATUS_NEW) {
