@@ -148,7 +148,7 @@
 			curl_close($ch);
 
 			if ($json)
-				return json_decode($result, true);
+				return json_decode(utf8_encode($result), true);
 			else
 				return $result;
 		}
