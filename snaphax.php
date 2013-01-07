@@ -125,16 +125,23 @@
 
 		public function fetchBlob($snap_id, $username, $auth_token) {
 			$un = urlencode($username);
-			$ts = time();
+			$ts = $this->time();
 			$url = "/ph/blob";
 			$result = $this->postCall($url, array(
 				'id' => $snap_id,
 				'timestamp' => $ts, 
 				'username' => $username,
 			), $auth_token, $ts, 0);
-			$this->debug('blob result: ' . $result);
+			$this->debug('blob result', $result);
+
+			// some blobs are not encrypted
+			if ($this->isValidBlobHeader(substr($result, 0, 256))) {
+				$this->debug('blob not encrypted');
+				return $result;
+			}
+
 			$result_decoded = mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $result, 'ecb');
-			$this->debug('decoded: ' . $result_decoded);
+			$this->debug('decoded snap', $result_decoded);
 			if ($this->isValidBlobHeader(substr($result_decoded, 0, 256))) {
 				return $result_decoded;
 			} else {
@@ -156,7 +163,8 @@
 			curl_setopt($ch,CURLOPT_POSTFIELDS, http_build_query($post_data));
 			$this->debug('POST params: ' . json_encode($post_data));
 			$result = curl_exec($ch);
-			$this->debug($result);
+			$this->debug('HTTP response code' . curl_getinfo($ch, CURLINFO_HTTP_CODE));
+			$this->debug('POST return ' . $result);
 
 			// close connection
 			curl_close($ch);
