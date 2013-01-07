@@ -94,9 +94,20 @@
 			$this->options = $options;
 		}
 
-		private function debug($text) {
-			if ($this->options['debug'])
-				echo "SNAPHAX DEBUG: $text\n";
+		private function debug($text, $binary = false) {
+			if ($this->options['debug']) {
+				echo "SNAPHAX DEBUG: $text";
+				if ($binary !== false) {
+					// shortened hex repr of binary
+					$len = strlen($binary);
+					$tmp = " hex ($len bytes): ";
+					$tmp.= join(' ', array_map('dechex', array_map('ord', str_split(substr($binary, 0, 16)))));
+					$tmp.= ' ... ';
+					$tmp.= join(' ', array_map('dechex', array_map('ord', str_split(substr($binary, -16)))));
+					echo $tmp;
+				}
+				echo "\n";
+			}
 		}
 
 		private function isValidBlobHeader($header) {
