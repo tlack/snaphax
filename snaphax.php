@@ -85,6 +85,9 @@
 				$this->auth_token);
 			return $blob;
 		}
+		function reqToken($param1, $param2) {
+			return $this->api->hash($param1, $param2);
+		}
 	}
 
 	class SnaphaxApi {
