@@ -59,7 +59,7 @@
 			$this->auth_token = false;
 		}
 		function login() {
-			$ts = time();
+			$ts = $this->api->time();
 			$out = $this->api->postCall(
 				'/ph/login',
 				array(
@@ -194,6 +194,11 @@
 			$this->debug("out: $out");
 			return $out;
 		}
+
+		function time() {
+			return round(microtime(true) * 1000);
+		}
+
 	}
 
 
