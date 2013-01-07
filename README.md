@@ -84,6 +84,7 @@ The apocalyptic future
 
 The TODO list is almost endless at this point:
 
+- API likely to change
 - DOCS!!!
 - Syncing (to mark snaps as seen)
 - Image/video uploading
@@ -101,7 +102,8 @@ MIT
 Credits
 -------
 
-Made by [@tlack](http://twitter.com/tlack) with a lot of help from 
-[@adamcaudill](http://twitter.com/adamcaudill), and of course all of this is
-due to the inventiveness of the [Snapchat](http://snapchat.com) team
+Made by Thomas Lackner <[@tlack](http://twitter.com/tlack)> with a lot of help
+from [@adamcaudill](http://twitter.com/adamcaudill).  And of course none of
+this would be possible without the inventiveness of the
+[Snapchat](http://snapchat.com) team
 
