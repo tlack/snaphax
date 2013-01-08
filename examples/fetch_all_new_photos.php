@@ -39,7 +39,7 @@
 						$ext = '.jpg';
 					else
 						$ext = '.mp4';
-					file_put_contents($snap['id'].$ext, $blob_data);
+					file_put_contents($snap['c_id'].$ext, $blob_data);
 				}
 			}
 		}
