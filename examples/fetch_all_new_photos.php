@@ -30,7 +30,6 @@
 		}
 
 		foreach ($result['snaps'] as $snap) {
-			var_dump($snap['st']);
 			if ($snap['st'] == SnapHax::STATUS_NEW) {
 				echo "fetching $snap[id]\n";
 				$blob_data = $s->fetch($snap['id']);
@@ -39,7 +38,7 @@
 						$ext = '.jpg';
 					else
 						$ext = '.mp4';
-					file_put_contents($snap['c_id'].$ext, $blob_data);
+					file_put_contents($snap['sn'].$snap['id'].$ext, $blob_data);
 				}
 			}
 		}
