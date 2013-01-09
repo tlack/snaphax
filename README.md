@@ -86,6 +86,7 @@ The TODO list is almost endless at this point:
 
 - API likely to change
 - DOCS!!!
+- Figure out the /device call - what's this do? also device_id in /login resp
 - Syncing (to mark snaps as seen)
 - Image/video uploading
 - Friend list maintenance
