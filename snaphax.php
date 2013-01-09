@@ -80,13 +80,83 @@
 			if (!$this->auth_token) {
 				throw new Exception('no auth token');
 			}
-			$blob = $this->api->fetchBlob($id, 
-				$this->options['username'], 
-				$this->auth_token);
-			return $blob;
+			$ts = $this->api->time();
+			$url = "/ph/blob";
+			$result = $this->api->postCall($url, array(
+				'id' => $id,
+				'timestamp' => $ts, 
+				'username' => urlencode($this->options['username'])
+			), $this->auth_token, $ts, 0);
+			$this->api->debug('blob result', $result);
+
+			// some blobs are not encrypted
+			if ($this->api->isValidBlobHeader(substr($result, 0, 256))) {
+				$this->api->debug('blob not encrypted');
+				return $result;
+			}
+
+			$result_decoded = $this->api->decrypt($result);
+			$this->api->debug('decoded snap', $result_decoded);
+			if ($this->api->isValidBlobHeader(substr($result_decoded, 0, 256))) {
+				return $result_decoded;
+			} else {
+				$this->api->debug('invalid image/video data header');
+				return false;
+			}
 		}
 		function reqToken($param1, $param2) {
 			return $this->api->hash($param1, $param2);
+		}
+		function upload($file_data, $type, $recipients, $time=8) {
+			if ($type != self::MEDIA_IMAGE && $type != self::MEDIA_VIDEO) 
+				throw new Exception('Snaphax: upload type must be MEDIA_IMAGE or MEDIA_VIDEO');
+			if (!$this->auth_token) {
+				throw new Exception('no auth token');
+			}
+			if (!is_array($recipients))
+				$recipients = array($recipients);
+			$ts = $this->api->time();
+			$media_id = strtoupper($this->options['username']).time();
+			$this->api->debug('upload snap data', $file_data);
+			$file_data_encrypted = $this->api->encrypt($file_data);
+			$this->api->debug('upload snap data encrypted', $file_data_encrypted);
+			file_put_contents('/tmp/blah.jpg', $file_data_encrypted);
+			$result = $this->api->postCall(
+				'/ph/upload',
+				array(
+					'username' => $this->options['username'],
+					'timestamp' => $ts,
+					'type' => $type,
+					// 'data' => urlencode($file_data_encrypted).'; filename="file"',
+					'data' => '@/tmp/blah.jpg;filename=file',
+					'media_id' => $media_id
+				),
+				$this->auth_token, 
+				$ts,
+				0,
+				array("Content-type: multipart/form-data")
+			);
+			$this->api->debug('upload result', $result);
+
+			foreach ($recipients as $recipient) {
+				$ts = $this->api->time();
+				$result = $this->api->postCall(
+					'/ph/send',
+					array(
+						'username' => $this->options['username'],
+						'timestamp' => $ts,
+						'recipient' => $recipient,
+						'media_id' => $media_id,
+						'time' => $time
+					),
+					$this->auth_token, 
+					$ts,
+					0
+				);
+				$this->api->debug("send to $recipient: " . $result);
+			}
+
+			return $media_id;
 		}
 	}
 
@@ -97,7 +167,7 @@
 			$this->options = $options;
 		}
 
-		private function debug($text, $binary = false) {
+		function debug($text, $binary = false) {
 			if ($this->options['debug']) {
 				echo "SNAPHAX DEBUG: $text";
 				if ($binary !== false) {
@@ -113,7 +183,7 @@
 			}
 		}
 
-		private function isValidBlobHeader($header) {
+		function isValidBlobHeader($header) {
 			if (($header[0] == chr(00) && // mp4
 					 $header[0] == chr(00)) || 
 					($header[0] == chr(0xFF) && // jpg
@@ -123,34 +193,15 @@
 				return false;
 		}
 
-		public function fetchBlob($snap_id, $username, $auth_token) {
-			$un = urlencode($username);
-			$ts = $this->time();
-			$url = "/ph/blob";
-			$result = $this->postCall($url, array(
-				'id' => $snap_id,
-				'timestamp' => $ts, 
-				'username' => $username,
-			), $auth_token, $ts, 0);
-			$this->debug('blob result', $result);
-
-			// some blobs are not encrypted
-			if ($this->isValidBlobHeader(substr($result, 0, 256))) {
-				$this->debug('blob not encrypted');
-				return $result;
-			}
-
-			$result_decoded = mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $result, 'ecb');
-			$this->debug('decoded snap', $result_decoded);
-			if ($this->isValidBlobHeader(substr($result_decoded, 0, 256))) {
-				return $result_decoded;
-			} else {
-				$this->debug('invalid image/video data header');
-				return false;
-			}
+		function decrypt($data) {
+			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
 		}
 
-		public function postCall($endpoint, $post_data, $param1, $param2, $json=1) {
+		function encrypt($data) {
+			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
+		}
+
+		public function postCall($endpoint, $post_data, $param1, $param2, $json=1, $headers=false) {
 			$ch = curl_init();
 
 			// set the url, number of POST vars, POST data
@@ -158,11 +209,22 @@
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch,CURLOPT_USERAGENT, $this->options['user_agent']);
 
+			if ($headers && is_array($headers)) {
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			}
+
 			$post_data['req_token'] = $this->hash($param1, $param2);
-			curl_setopt($ch,CURLOPT_POST, count($post_data));
-			curl_setopt($ch,CURLOPT_POSTFIELDS, http_build_query($post_data));
+			curl_setopt($ch, CURLOPT_POST, count($post_data));
+			if (!$headers) 
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
+			else
+				curl_setopt($ch,CURLOPT_POSTFIELDS, $post_data);
 			$this->debug('POST params: ' . json_encode($post_data));
 			$result = curl_exec($ch);
+			if ($result === false) {
+				$this->debug('CURL error: '.curl_error($ch));
+				return false;
+			}
 			$this->debug('HTTP response code' . curl_getinfo($ch, CURLINFO_HTTP_CODE));
 			$this->debug('POST return ' . $result);
 
