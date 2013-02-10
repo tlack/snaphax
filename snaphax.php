@@ -120,7 +120,8 @@
 			$this->api->debug('upload snap data', $file_data);
 			$file_data_encrypted = $this->api->encrypt($file_data);
 			$this->api->debug('upload snap data encrypted', $file_data_encrypted);
-			file_put_contents('/tmp/blah.jpg', $file_data_encrypted);
+			$tempname = tempnam('/tmp/', 'jpg');
+			file_put_contents($tempname, $file_data_encrypted);
 			$result = $this->api->postCall(
 				'/ph/upload',
 				array(
@@ -128,7 +129,7 @@
 					'timestamp' => $ts,
 					'type' => $type,
 					// 'data' => urlencode($file_data_encrypted).'; filename="file"',
-					'data' => '@/tmp/blah.jpg;filename=file',
+					'data' => "@$tempname;filename=data",
 					'media_id' => $media_id
 				),
 				$this->auth_token, 
@@ -136,6 +137,7 @@
 				0,
 				array("Content-type: multipart/form-data")
 			);
+			unlink($tempname);
 			$this->api->debug('upload result', $result);
 
 			foreach ($recipients as $recipient) {
