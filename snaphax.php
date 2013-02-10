@@ -76,6 +76,35 @@
 			}
 			return $out;
 		}
+		function friend($action, $friend, $display=NULL) {
+			// Action can be "add", "delete", or "display"
+			// "add" adds the friend
+			// "delete" removes the friend
+			// "display" changes the display name of the friend to the value specifed by $display
+			
+			if (!$this->auth_token) {
+				throw new Exception('no auth token');
+			}
+			$ts = $this->api->time();
+			$url = "/ph/friend";
+			$request = array(
+				'timestamp' => $ts,
+				'action' => $action,
+				'username' => $this->options['username'],
+				'friend' => $friend
+			);
+			if($action == 'display') {
+				if(is_null($display)) {
+					throw new Exception('Please specify the displayname');
+				}
+				$request['display'] = $display;
+			}
+			
+			$result = $this->api->postCall($url, $request, $this->auth_token, $ts);
+			$this->api->debug('modified user', $result);
+
+			return $result;
+                }
 		function fetch($id) {
 			if (!$this->auth_token) {
 				throw new Exception('no auth token');
