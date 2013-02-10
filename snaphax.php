@@ -192,13 +192,22 @@
 			else
 				return false;
 		}
+		
+		function pkcs5pad($data) {
+			// Block size is 16 bytes
+			$needed_padding = 16 - strlen($data) % 16;
+			if ($needed_padding == 0) {
+				$needed_padding = 16;
+			}
+			return $data . str_repeat(chr($needed_padding), $needed_padding);
+		}
 
 		function decrypt($data) {
-			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
+			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], pkcs5pad($data), 'ecb');
 		}
 
 		function encrypt($data) {
-			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
+			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], pkcs5pad($data), 'ecb');
 		}
 
 		public function postCall($endpoint, $post_data, $param1, $param2, $json=1, $headers=false) {
