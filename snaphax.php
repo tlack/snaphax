@@ -115,6 +115,7 @@
 			}
 			if (!is_array($recipients))
 				$recipients = array($recipients);
+            $recipients = join(', ', $recipients);
 			$ts = $this->api->time();
 			$media_id = strtoupper($this->options['username']).time();
 			$this->api->debug('upload snap data', $file_data);
@@ -138,23 +139,21 @@
 			);
 			$this->api->debug('upload result', $result);
 
-			foreach ($recipients as $recipient) {
-				$ts = $this->api->time();
-				$result = $this->api->postCall(
-					'/ph/send',
-					array(
-						'username' => $this->options['username'],
-						'timestamp' => $ts,
-						'recipient' => $recipient,
-						'media_id' => $media_id,
-						'time' => $time
-					),
-					$this->auth_token, 
-					$ts,
-					0
-				);
-				$this->api->debug("send to $recipient: " . $result);
-			}
+            $ts = $this->api->time();
+            $result = $this->api->postCall(
+                '/ph/send',
+                array(
+                    'username' => $this->options['username'],
+                    'timestamp' => $ts,
+                    'recipient' => $recipients,
+                    'media_id' => $media_id,
+                    'time' => $time
+                ),
+                $this->auth_token, 
+                $ts,
+                0
+            );
+            $this->api->debug("send to $recipient: " . $result);
 
 			return $media_id;
 		}
