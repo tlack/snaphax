@@ -1,0 +1,3 @@
+[submodule "submodules/IniParser"]
+	path = submodules/IniParser
+	url = git@github.com:ehime/IniParser.git
