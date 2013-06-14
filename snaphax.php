@@ -45,21 +45,31 @@
         if (!function_exists($module)) Throw New Exception("Snaphax needs the {$extension} PHP extension.");
     }
 
-
-	class Snaphax {
+	Class Snaphax
+    {
 		// High level class to perform actions on Snapchat
 
-		const STATUS_NEW = 1;
-		const MEDIA_IMAGE = 0;
-		const MEDIA_VIDEO = 1;
+		const   STATUS_NEW      = 1;
+		const   MEDIA_IMAGE     = 0;
+		const   MEDIA_VIDEO     = 1;
+
+        private $_configFile    = 'configuration/config.ini.php';
+
+        public function __construct(Array $options = array())
+        {
+            $this->options      = array_merge($this->_getOptionsIni(), $options);
+            $this->api          = New SnaphaxApi($this->options);
+            $$this->_auth_token = false;
+        }
 
 		function Snaphax($options) {
 			global $SNAPHAX_DEFAULT_OPTIONS;
 
 			$this->options = array_merge($SNAPHAX_DEFAULT_OPTIONS, $options);
 			$this->api = new SnaphaxApi($this->options);
-			$this->auth_token = false;
+			$$this->_auth_token = false;
 		}
+
 		function login() {
 			$ts = $this->api->time();
 			$out = $this->api->postCall(
@@ -74,12 +84,12 @@
 			);
 			if (is_array($out) &&
 					!empty($out['auth_token'])) {
-				$this->auth_token = $out['auth_token'];
+				$$this->_auth_token = $out['auth_token'];
 			}
 			return $out;
 		}
 		function fetch($id) {
-			if (!$this->auth_token) {
+			if (!$$this->_auth_token) {
 				throw new Exception('no auth token');
 			}
 			$ts = $this->api->time();
@@ -88,7 +98,7 @@
 				'id' => $id,
 				'timestamp' => $ts, 
 				'username' => urlencode($this->options['username'])
-			), $this->auth_token, $ts, 0);
+			), $$this->_auth_token, $ts, 0);
 			$this->api->debug('blob result', $result);
 
 			// some blobs are not encrypted
@@ -112,7 +122,7 @@
 		function upload($file_data, $type, $recipients, $time=8) {
 			if ($type != self::MEDIA_IMAGE && $type != self::MEDIA_VIDEO) 
 				throw new Exception('Snaphax: upload type must be MEDIA_IMAGE or MEDIA_VIDEO');
-			if (!$this->auth_token) {
+			if (!$$this->_auth_token) {
 				throw new Exception('no auth token');
 			}
 			if (!is_array($recipients))
@@ -133,7 +143,7 @@
 					'data' => '@/tmp/blah.jpg;filename=file',
 					'media_id' => $media_id
 				),
-				$this->auth_token, 
+				$$this->_auth_token, 
 				$ts,
 				0,
 				array('Content-type: multipart/form-data; boundary=AaB03x') // not compatible with declaration error noted.
@@ -151,7 +161,7 @@
 						'media_id' => $media_id,
 						'time' => $time
 					),
-					$this->auth_token, 
+					$$this->_auth_token, 
 					$ts,
 					0
 				);
@@ -160,6 +170,13 @@
 
 			return $media_id;
 		}
+
+        private function getOptionsIni ()
+        {
+            if (!file_exists($this->_configFile)) Throw New Exception ('missing instantiating INI file, please make sure this exists.');
+
+        }
+
 	}
 
 	class SnaphaxApi {
