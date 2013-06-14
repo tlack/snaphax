@@ -134,7 +134,7 @@
 				$this->auth_token, 
 				$ts,
 				0,
-				array("Content-type: multipart/form-data")
+				array('Content-type: multipart/form-data; boundary=AaB03x') // not compatible with declaration error noted.
 			);
 			$this->api->debug('upload result', $result);
 
