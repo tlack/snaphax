@@ -10,7 +10,7 @@
     <file path="/Dummy.txt" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371234882300" ignored="false" />
     <file path="/snaphax.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371234261696" ignored="false" />
     <file path="/config.ini.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371232929047" ignored="false" />
-    <file path="/IniParser.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371233505397" ignored="false" />
+    <file path="/IniParser.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371235757590" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
       <file leaf-file-name="IniParser.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/submodules/IniParser/src/IniParser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="277" column="40" selection-start="8177" selection-end="8177" vertical-scroll-proportion="0.6344969">
+            <state line="65" column="31" selection-start="1362" selection-end="1362" vertical-scroll-proportion="0.33050847">
               <folding />
             </state>
           </provider>
@@ -53,7 +53,7 @@
       <file leaf-file-name="IniParserTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/Test/IniParserTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="1" selection-start="933" selection-end="933" vertical-scroll-proportion="10.875">
+            <state line="26" column="47" selection-start="617" selection-end="617" vertical-scroll-proportion="-5.2040815">
               <folding />
             </state>
           </provider>
@@ -89,9 +89,9 @@
         <option value="$PROJECT_DIR$/snaphix.dic" />
         <option value="$PROJECT_DIR$/configuration/config.ini.php" />
         <option value="$PROJECT_DIR$/submodules/IniParser/tests/bootstrap.php" />
-        <option value="$PROJECT_DIR$/submodules/IniParser/src/IniParser.php" />
         <option value="$PROJECT_DIR$/snaphax.php" />
         <option value="$PROJECT_DIR$/.phpstorm/spelling/snaphax.dic" />
+        <option value="$PROJECT_DIR$/submodules/IniParser/src/IniParser.php" />
       </list>
     </option>
   </component>
@@ -275,10 +275,10 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13256113" sideWeight="0.8719008" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14543115" sideWeight="0.74104685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14543115" sideWeight="0.91735536" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.6046832" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25895315" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08264463" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -353,13 +353,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/Test/IniParserTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="1" selection-start="933" selection-end="933" vertical-scroll-proportion="10.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configuration/config.ini.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="24" selection-start="91" selection-end="114" vertical-scroll-proportion="-1.25">
@@ -390,9 +383,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/Test/IniParserTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="47" selection-start="617" selection-end="617" vertical-scroll-proportion="-5.2040815">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/submodules/IniParser/src/IniParser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="277" column="40" selection-start="8177" selection-end="8177" vertical-scroll-proportion="0.6344969">
+        <state line="65" column="31" selection-start="1362" selection-end="1362" vertical-scroll-proportion="0.33050847">
           <folding />
         </state>
       </provider>
