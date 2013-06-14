@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4164c1b6-b418-44c9-84ca-0d7debdee5d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/configuration/config.ini.php" afterPath="$PROJECT_DIR$/configuration/config.ini.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.phpstorm/spelling/snaphax.dic" afterPath="$PROJECT_DIR$/.phpstorm/spelling/snaphax.dic" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snaphax.php" afterPath="$PROJECT_DIR$/snaphax.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submodules/IniParser" afterPath="$PROJECT_DIR$/submodules/IniParser" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="snaphax.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371232703683" ignored="false" />
-    <file path="/snaphax.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371233068011" ignored="false" />
+    <file path="/Dummy.txt" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371234882300" ignored="false" />
+    <file path="/snaphax.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371234261696" ignored="false" />
     <file path="/config.ini.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371232929047" ignored="false" />
     <file path="/IniParser.php" changelist="4164c1b6-b418-44c9-84ca-0d7debdee5d3" time="1371233505397" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,19 +33,10 @@
       <file leaf-file-name="snaphax.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snaphax.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="167" column="50" selection-start="5514" selection-end="5514" vertical-scroll-proportion="-3.4189188">
+            <state line="31" column="0" selection-start="1324" selection-end="1324" vertical-scroll-proportion="-3.4081633">
               <folding>
-                <element signature="e#7#1201#0" expanded="true" />
+                <element signature="e#6#1197#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/bootstrap.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="4" selection-start="102" selection-end="102" vertical-scroll-proportion="-1.875">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -55,16 +44,7 @@
       <file leaf-file-name="IniParser.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/submodules/IniParser/src/IniParser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="277" column="40" selection-start="8177" selection-end="8177" vertical-scroll-proportion="0.7963917">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="snaphax.dic" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.phpstorm/spelling/snaphax.dic">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="7" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
+            <state line="277" column="40" selection-start="8177" selection-end="8177" vertical-scroll-proportion="0.6344969">
               <folding />
             </state>
           </provider>
@@ -73,7 +53,7 @@
       <file leaf-file-name="IniParserTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/Test/IniParserTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="225" column="30" selection-start="6583" selection-end="6583" vertical-scroll-proportion="-6.5416665">
+            <state line="40" column="1" selection-start="933" selection-end="933" vertical-scroll-proportion="10.875">
               <folding />
             </state>
           </provider>
@@ -82,7 +62,7 @@
       <file leaf-file-name="config.ini.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configuration/config.ini.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="56" selection-start="409" selection-end="409" vertical-scroll-proportion="-5.0">
+            <state line="2" column="24" selection-start="91" selection-end="114" vertical-scroll-proportion="-1.25">
               <folding />
             </state>
           </provider>
@@ -108,10 +88,10 @@
       <list>
         <option value="$PROJECT_DIR$/snaphix.dic" />
         <option value="$PROJECT_DIR$/configuration/config.ini.php" />
-        <option value="$PROJECT_DIR$/.phpstorm/spelling/snaphax.dic" />
-        <option value="$PROJECT_DIR$/snaphax.php" />
         <option value="$PROJECT_DIR$/submodules/IniParser/tests/bootstrap.php" />
         <option value="$PROJECT_DIR$/submodules/IniParser/src/IniParser.php" />
+        <option value="$PROJECT_DIR$/snaphax.php" />
+        <option value="$PROJECT_DIR$/.phpstorm/spelling/snaphax.dic" />
       </list>
     </option>
   </component>
@@ -182,92 +162,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="submodules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IniParser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="submodules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IniParser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="configuration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaphax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".phpstorm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spelling" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -360,7 +254,11 @@
       <created>1371232705033</created>
       <updated>1371232705033</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Bug fixes and cleanup. Added bigger dictionary">
+      <created>1371234884456</created>
+      <updated>1371234884456</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -376,11 +274,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13256113" sideWeight="0.75068873" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14543115" sideWeight="0.6046832" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.75068873" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13256113" sideWeight="0.8719008" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14543115" sideWeight="0.74104685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.6046832" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3953168" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25895315" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -429,7 +327,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Disallow INI reading by compiler halting if file is not saved above a doc-root level" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes and cleanup. Added bigger dictionary" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -449,51 +347,52 @@
     <MESSAGE value="Easier module checking" />
     <MESSAGE value="Stubout for Configuration INI, saner way than passing Global Array variables around everywhere." />
     <MESSAGE value="Disallow INI reading by compiler halting if file is not saved above a doc-root level" />
+    <MESSAGE value="Bug fixes and cleanup. Added bigger dictionary" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/Test/IniParserTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="1" selection-start="933" selection-end="933" vertical-scroll-proportion="10.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/configuration/config.ini.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="56" selection-start="409" selection-end="409" vertical-scroll-proportion="-5.0">
+        <state line="2" column="24" selection-start="91" selection-end="114" vertical-scroll-proportion="-1.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="4" selection-start="102" selection-end="102" vertical-scroll-proportion="0.11597938">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/snaphax.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="50" selection-start="5514" selection-end="5514" vertical-scroll-proportion="-3.4189188">
+        <state line="31" column="0" selection-start="1324" selection-end="1324" vertical-scroll-proportion="-3.4081633">
           <folding>
-            <element signature="e#7#1201#0" expanded="true" />
+            <element signature="e#6#1197#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/bootstrap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="102" selection-end="102" vertical-scroll-proportion="-1.875">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.phpstorm/spelling/snaphax.dic">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="7" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/submodules/IniParser/tests/Test/IniParserTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="30" selection-start="6583" selection-end="6583" vertical-scroll-proportion="-6.5416665">
+        <state line="34" column="9" selection-start="322" selection-end="322" vertical-scroll-proportion="0.99804306">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/submodules/IniParser/src/IniParser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="277" column="40" selection-start="8177" selection-end="8177" vertical-scroll-proportion="0.7963917">
+        <state line="277" column="40" selection-start="8177" selection-end="8177" vertical-scroll-proportion="0.6344969">
           <folding />
         </state>
       </provider>
