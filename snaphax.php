@@ -23,27 +23,6 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	
-	$SNAPHAX_DEFAULT_OPTIONS = array(
-		'blob_enc_key' => 'M02cnQ51Ji97vwT4',
-		'debug' => false,
-		'pattern' => '0001110111101110001111010101111011010001001110011000110001000110',
-		'secret' => 'iEk21fuwZApXlz93750dmW22pw389dPwOk',
-		'static_token' => 'm198sOkJEn37DjqZ32lpRu76xmw288xSQ9',
-		'url' => 'https://feelinsonice.appspot.com',
-		'user_agent' => 'Snaphax 4.0.1 (iPad; iPhone OS 6.0; en_US)'
-	);
-
-    $requirements = array(
-        'curl_init'      => 'CURL',
-        'json_decode'    => 'JSON',
-        'mcrypt_decrypt' => 'MCRYPT',
-    );
-
-    foreach ($requirements AS $module => $extension)
-    {
-        if (!function_exists($module)) Throw New Exception("Snaphax needs the {$extension} PHP extension.");
-    }
 
 	Class Snaphax
     {
@@ -57,6 +36,8 @@
 
         public function __construct(Array $options = array())
         {
+            $this->_checkRequirements();
+
             $this->options      = array_merge($this->_getOptionsIni(), $options);
             $this->api          = New SnaphaxApi($this->options);
             $$this->_auth_token = false;
@@ -171,9 +152,22 @@
 			return $media_id;
 		}
 
+        private function _checkRequirements()
+        {
+            foreach ($requirements AS $module => $extension)
+            {
+                if (!function_exists($module)) Throw New Exception("Snaphax needs the {$extension} PHP extension.");
+            }
+
+        }
+
         private function getOptionsIni ()
         {
             if (!file_exists($this->_configFile)) Throw New Exception ('missing instantiating INI file, please make sure this exists.');
+
+            require_once 'submodules/IniParser/src/IniParser.php';
+
+            $config = New \IniParser();
 
         }
 
