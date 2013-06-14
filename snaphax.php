@@ -1,4 +1,4 @@
-<?
+<?php
 	/*
 	SnapHax: a library for communicating with Snaphax	
 	Implements a subset of the Snaphax API
@@ -34,15 +34,17 @@
 		'user_agent' => 'Snaphax 4.0.1 (iPad; iPhone OS 6.0; en_US)'
 	);
 
-	if (!function_exists('curl_init')) {
-		  throw new Exception('Snaphax needs the CURL PHP extension.');
-	}
-	if (!function_exists('json_decode')) {
-		  throw new Exception('Snaphax needs the JSON PHP extension.');
-	}
-	if (!function_exists('mcrypt_decrypt')) {
-		  throw new Exception('Snaphax needs the mcrypt PHP extension.');
-	}
+    $requirements = array(
+        'curl_init'      => 'CURL',
+        'json_decode'    => 'JSON',
+        'mcrypt_decrypt' => 'MCRYPT',
+    );
+
+    foreach ($requirements AS $module => $extension)
+    {
+        if (!function_exists($module)) Throw New Exception("Snaphax needs the {$extension} PHP extension.");
+    }
+
 
 	class Snaphax {
 		// High level class to perform actions on Snapchat
