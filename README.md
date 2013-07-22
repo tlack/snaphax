@@ -1,3 +1,13 @@
+Dear Snapchat,
+
+GTFO
+
+Kind regards,
+
+Hacker News
+
+---
+
 Snaphax: a PHP library to use the Snapchat API
 ==============================================
 
