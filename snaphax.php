@@ -23,14 +23,19 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
+
+	/* Instructions for usage:
+           1. Replace YOUR_SECRET_KEY and YOUR_STATIC_TOKEN in the code below with
+              the values you have to access the service.
+           2. Fill in SERVICE_URL with the appropriate endpoint. */
 	
 	$SNAPHAX_DEFAULT_OPTIONS = array(
 		'blob_enc_key' => 'M02cnQ51Ji97vwT4',
 		'debug' => false,
 		'pattern' => '0001110111101110001111010101111011010001001110011000110001000110',
-		'secret' => 'iEk21fuwZApXlz93750dmW22pw389dPwOk',
-		'static_token' => 'm198sOkJEn37DjqZ32lpRu76xmw288xSQ9',
-		'url' => 'https://feelinsonice.appspot.com',
+		'secret' => 'YOUR_SECRET_KEY',
+		'static_token' => 'YOUR_STATIC_TOKEN',
+		'url' => 'SERVICE_URL',
 		'user_agent' => 'Snaphax 4.0.1 (iPad; iPhone OS 6.0; en_US)'
 	);
 
