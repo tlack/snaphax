@@ -74,6 +74,9 @@
 					!empty($out['auth_token'])) {
 				$this->auth_token = $out['auth_token'];
 			}
+			if ( is_array($out) && !empty($out['username']) ) {
+				$this->options['username'] = $out['username'];
+			}
 			return $out;
 		}
 		function friend($action, $friend, $display=NULL) {
@@ -234,11 +237,11 @@
 		}
 
 		function decrypt($data) {
-			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], pkcs5pad($data), 'ecb');
+			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], SnaphaxApi::pkcs5pad($data), 'ecb');
 		}
 
 		function encrypt($data) {
-			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], pkcs5pad($data), 'ecb');
+			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], SnaphaxApi::pkcs5pad($data), 'ecb');
 		}
 
 		public function postCall($endpoint, $post_data, $param1, $param2, $json=1, $headers=false) {
