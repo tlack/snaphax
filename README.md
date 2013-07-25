@@ -88,10 +88,6 @@ The TODO list is almost endless at this point:
 - DOCS!!!
 - Figure out the /device call - what's this do? also device_id in /login resp
 - Syncing (to mark snaps as seen)
-- Image/video uploading
-- Friend list maintenance
-- Port to Javascript (probably via Node + NPM since their API doesn't seem to
-	support JSONP)
 - Add support for PHP composer
 - Test framework
 
