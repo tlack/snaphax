@@ -269,7 +269,7 @@
 		}
 
 		function time() {
-			return round(microtime(true) * 1000);
+			return round(microtime(false) * 1000);
 		}
 
 	}
