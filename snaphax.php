@@ -1,4 +1,4 @@
-<?
+<?php
 	/*
 	SnapHax: a library for communicating with Snaphax	
 	Implements a subset of the Snaphax API
@@ -30,7 +30,7 @@
 		'pattern' => '0001110111101110001111010101111011010001001110011000110001000110',
 		'secret' => 'iEk21fuwZApXlz93750dmW22pw389dPwOk',
 		'static_token' => 'm198sOkJEn37DjqZ32lpRu76xmw288xSQ9',
-		'url' => 'https://feelinsonice.appspot.com',
+		'url' => 'https://feelinsonice-hrd.appspot.com',
 		'user_agent' => 'Snaphax 4.0.1 (iPad; iPhone OS 6.0; en_US)'
 	);
 
@@ -61,7 +61,7 @@
 		function login() {
 			$ts = $this->api->time();
 			$out = $this->api->postCall(
-				'/ph/login',
+				'/bq/login',
 				array(
 					'username' => $this->options['username'],
 					'password' => $this->options['password'],
@@ -81,7 +81,7 @@
 				throw new Exception('no auth token');
 			}
 			$ts = $this->api->time();
-			$url = "/ph/blob";
+			$url = "/bq/blob";
 			$result = $this->api->postCall($url, array(
 				'id' => $id,
 				'timestamp' => $ts, 
@@ -122,7 +122,7 @@
 			$this->api->debug('upload snap data encrypted', $file_data_encrypted);
 			file_put_contents('/tmp/blah.jpg', $file_data_encrypted);
 			$result = $this->api->postCall(
-				'/ph/upload',
+				'/bq/upload',
 				array(
 					'username' => $this->options['username'],
 					'timestamp' => $ts,
@@ -141,7 +141,7 @@
 			foreach ($recipients as $recipient) {
 				$ts = $this->api->time();
 				$result = $this->api->postCall(
-					'/ph/send',
+					'/bq/send',
 					array(
 						'username' => $this->options['username'],
 						'timestamp' => $ts,
@@ -275,3 +275,4 @@
 	}
 
 
+?>
