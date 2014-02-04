@@ -16,7 +16,7 @@ How to use
 
 Pretty simple:
 
-```
+```php
 	require_once('snaphax/snaphax.php');
 
 	$opts = array();
@@ -64,7 +64,7 @@ in the HTTP calls).
 This involved me paging through Fiddler, trying to generate SHA-256 hashes
 seemingly at random, tearing my heart out, and weeping openly.
 
-Their system is a bit unusual: it AES-256 hashes two input values separately,
+Their system is a bit unusual: it SHA-256 hashes two input values separately,
 using a secret key contained in the binary, and then uses a fixed pattern
 string to pull bytes from one or the other. The final composition of the two is
 used in HTTP requests. Why not just append the values pre-hash? The security
@@ -88,10 +88,6 @@ The TODO list is almost endless at this point:
 - DOCS!!!
 - Figure out the /device call - what's this do? also device_id in /login resp
 - Syncing (to mark snaps as seen)
-- Image/video uploading
-- Friend list maintenance
-- Port to Javascript (probably via Node + NPM since their API doesn't seem to
-	support JSONP)
 - Add support for PHP composer
 - Test framework
 

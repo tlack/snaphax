@@ -74,8 +74,40 @@
 					!empty($out['auth_token'])) {
 				$this->auth_token = $out['auth_token'];
 			}
+			if ( is_array($out) && !empty($out['username']) ) {
+				$this->options['username'] = $out['username'];
+			}
 			return $out;
 		}
+		function friend($action, $friend, $display=NULL) {
+			// Action can be "add", "delete", or "display"
+			// "add" adds the friend
+			// "delete" removes the friend
+			// "display" changes the display name of the friend to the value specifed by $display
+			
+			if (!$this->auth_token) {
+				throw new Exception('no auth token');
+			}
+			$ts = $this->api->time();
+			$url = "/ph/friend";
+			$request = array(
+				'timestamp' => $ts,
+				'action' => $action,
+				'username' => $this->options['username'],
+				'friend' => $friend
+			);
+			if($action == 'display') {
+				if(is_null($display)) {
+					throw new Exception('Please specify the displayname');
+				}
+				$request['display'] = $display;
+			}
+			
+			$result = $this->api->postCall($url, $request, $this->auth_token, $ts);
+			$this->api->debug('modified user', $result);
+
+			return $result;
+                }
 		function fetch($id) {
 			if (!$this->auth_token) {
 				throw new Exception('no auth token');
@@ -120,7 +152,8 @@
 			$this->api->debug('upload snap data', $file_data);
 			$file_data_encrypted = $this->api->encrypt($file_data);
 			$this->api->debug('upload snap data encrypted', $file_data_encrypted);
-			file_put_contents('/tmp/blah.jpg', $file_data_encrypted);
+			$tempname = tempnam('/tmp/', 'jpg');
+			file_put_contents($tempname, $file_data_encrypted);
 			$result = $this->api->postCall(
 				'/bq/upload',
 				array(
@@ -128,7 +161,7 @@
 					'timestamp' => $ts,
 					'type' => $type,
 					// 'data' => urlencode($file_data_encrypted).'; filename="file"',
-					'data' => '@/tmp/blah.jpg;filename=file',
+					'data' => "@$tempname;filename=data",
 					'media_id' => $media_id
 				),
 				$this->auth_token, 
@@ -136,6 +169,7 @@
 				0,
 				array("Content-type: multipart/form-data")
 			);
+			unlink($tempname);
 			$this->api->debug('upload result', $result);
 
 			foreach ($recipients as $recipient) {
@@ -192,13 +226,22 @@
 			else
 				return false;
 		}
+		
+		function pkcs5pad($data) {
+			// Block size is 16 bytes
+			$needed_padding = 16 - strlen($data) % 16;
+			if ($needed_padding == 0) {
+				$needed_padding = 16;
+			}
+			return $data . str_repeat(chr($needed_padding), $needed_padding);
+		}
 
 		function decrypt($data) {
-			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
+			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], SnaphaxApi::pkcs5pad($data), 'ecb');
 		}
 
 		function encrypt($data) {
-			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
+			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], SnaphaxApi::pkcs5pad($data), 'ecb');
 		}
 
 		public function postCall($endpoint, $post_data, $param1, $param2, $json=1, $headers=false) {
