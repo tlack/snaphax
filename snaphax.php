@@ -120,7 +120,7 @@
 			$this->api->debug('upload snap data', $file_data);
 			$file_data_encrypted = $this->api->encrypt($file_data);
 			$this->api->debug('upload snap data encrypted', $file_data_encrypted);
-			file_put_contents('/tmp/blah.jpg', $file_data_encrypted);
+			file_put_contents('/tmp/snaphax.' . ($type == self::MEDIA_IMAGE ? 'jpg' : 'mp4'), $file_data_encrypted);
 			$result = $this->api->postCall(
 				'/bq/upload',
 				array(
@@ -128,7 +128,7 @@
 					'timestamp' => $ts,
 					'type' => $type,
 					// 'data' => urlencode($file_data_encrypted).'; filename="file"',
-					'data' => '@/tmp/blah.jpg;filename=file',
+					'data' => '@/tmp/snaphax.' . ($type == self::MEDIA_IMAGE ? 'jpg' : 'mp4') . ';filename=file',
 					'media_id' => $media_id
 				),
 				$this->auth_token, 
